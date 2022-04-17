@@ -1,0 +1,11 @@
+_target_: src.models.VIB.VIB
+
+input_size: 784
+encoder_first_hidden: 1024
+encoder_second_hidden: 1024
+z_dim: 20
+output_size: 10
+lr: 1e-3
+weight_decay: 0.005
+beta: 0.001
+num_samples: 1

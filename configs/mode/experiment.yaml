@@ -1,0 +1,19 @@
+# @package _global_
+
+# experiment mode sets name of the logging folder to the experiment name
+# can also be used to name the run in the logger
+# example usage:
+# `python run.py mode=exp name=some_name`
+
+experiment_mode: True
+
+hydra:
+  run:
+    dir: logs/experiments/runs/${dataset_name}/${model_name}
+  sweep:
+    dir: logs/experiments/multiruns/${dataset_name}/${model_name}
+    subdir: ${hydra.job.num}
+
+# Lightning runs a few steps of validation in the beginning of training. This avoids crashing in the validation
+# loop sometime deep into a lengthy training loop.
+num_sanity_val_steps: 1

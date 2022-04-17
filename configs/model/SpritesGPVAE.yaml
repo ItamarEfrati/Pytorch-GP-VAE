@@ -1,0 +1,36 @@
+_target_: src.models.SPRITES.SpritesModels.SpritesGPVAE
+
+z_dim: 256
+
+image_preprocessor:
+  _target_: src.models.Encoders.ImagePreprocessor
+  image_shape: [ -1, 64, 64, 3 ]
+  hidden_sizes: [ 3, 256, 3 ]
+  kernel_size: [ 3, 3 ]
+
+encoder:
+  _target_: src.models.Encoders.BandedJointEncoder
+  hidden_sizes: [12288, 32 ,256, 256]
+  precision_activation:
+    _target_: torch.nn.Softplus
+  z_size: 256
+  kernel_size: 3
+
+decoder:
+  _target_: src.models.Decoders.GaussianDecoder
+  hidden_sizes: [256, 256, 256, 256, 12288]
+
+classifier: null
+
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.1
+is_mask: True
+
+# gp
+kernel: cauchy
+kernel_scales: 1
+sigma: 1
+length_scale: 2
+time_length: 8
+

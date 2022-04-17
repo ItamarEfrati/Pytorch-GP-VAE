@@ -1,0 +1,7 @@
+_target_: src.datasets.PHYSIONET.Physionet
+
+download_dir: "data\\physionet"
+download_url: https://www.dropbox.com/s/651d86winb4cy9n/physionet.npz?dl=1
+file_name: physionet.npz
+batch_size: 64
+num_workers: 4

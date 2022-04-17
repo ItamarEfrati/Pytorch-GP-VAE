@@ -1,0 +1,17 @@
+_target_: pytorch_lightning.Trainer
+
+gpus: 1
+
+min_epochs: 1
+max_epochs: 40
+
+resume_from_checkpoint: null
+
+check_val_every_n_epoch: 5
+log_every_n_steps: 100
+
+
+
+# Lightning runs a few steps of validation in the beginning of training. This avoids crashing in the validation
+# loop sometime deep into a lengthy training loop.
+num_sanity_val_steps: 1

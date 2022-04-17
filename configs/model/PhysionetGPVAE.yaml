@@ -1,0 +1,37 @@
+_target_: src.models.PHYSIONET.PhysionetModels.PhysionetGPVAE
+
+z_dim: 35
+image_preprocessor: null
+
+encoder:
+  _target_: src.models.Encoders.BandedJointEncoder
+  hidden_sizes: [35, 128 ,128]
+  precision_activation:
+    _target_: torch.nn.Sigmoid
+  z_size: 35
+  kernel_size: 24
+
+decoder:
+  _target_: src.models.Decoders.GaussianDecoder
+  hidden_sizes: [35, 256, 256, 35]
+
+classifier:
+  _target_: sklearn.linear_model.LogisticRegression
+  solver: liblinear
+  tol: 1e-10
+  max_iter: 10000
+  n_jobs: -1
+  multi_class: ovr
+
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.2
+is_mask: True
+
+# gp
+kernel: cauchy
+kernel_scales: 1
+sigma: 1.005
+length_scale: 7
+time_length: 48
+

@@ -1,0 +1,11 @@
+rich
+omegaconf
+scikit-learn
+numpy
+torchmetrics
+torchvision
+matplotlib
+requests
+tqdm
+python-dotenv
+hydra-core

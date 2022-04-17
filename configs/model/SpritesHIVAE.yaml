@@ -1,0 +1,25 @@
+_target_: src.models.SPRITES.SpritesModels.SpritesHIVAE
+
+z_dim: 256
+
+image_preprocessor:
+  _target_: src.models.Encoders.ImagePreprocessor
+  image_shape: [ -1, 64, 64, 3 ]
+  hidden_sizes: [ 3, 256, 3 ]
+  kernel_size: [ 3, 3 ]
+
+encoder:
+  _target_: src.models.Encoders.DiagonalEncoder
+  hidden_sizes: [12288, 32 ,256, 256]
+  z_dim: 256
+
+decoder:
+  _target_: src.models.Decoders.GaussianDecoder
+  hidden_sizes: [256, 256, 256, 256, 12288]
+
+classifier: null
+
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.1
+is_mask: True

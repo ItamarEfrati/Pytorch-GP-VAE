@@ -1,0 +1,30 @@
+_target_: src.models.HMnist.HMnistModels.HMnistHIVAE
+
+z_dim: 256
+
+image_preprocessor:
+  _target_: src.models.Encoders.ImagePreprocessor
+  image_shape: [ -1, 28, 28, 1 ]
+  hidden_sizes: [ 1, 256, 1 ]
+  kernel_size: [ 3, 3 ]
+
+encoder:
+  _target_: src.models.Encoders.DiagonalEncoder
+  hidden_sizes: [784 ,256, 256]
+  z_dim: 256
+
+decoder:
+  _target_: src.models.Decoders.BernoulliDecoder
+  hidden_sizes: [256, 256, 256, 256, 784]
+
+classifier:
+  _target_: sklearn.linear_model.LogisticRegression
+  solver: lbfgs
+  tol: 1e-10
+  max_iter: 10000
+  n_jobs: -1
+
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.8
+is_mask: True

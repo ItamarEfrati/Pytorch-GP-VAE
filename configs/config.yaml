@@ -1,0 +1,28 @@
+defaults:
+  - _self_
+  - callbacks: none
+  - datamodule: physionet
+  - logger: tensorboard
+  - model: PhysionetHIVAE
+  - trainer: default
+  - mode: debug
+
+seed: 1337
+
+
+# evaluate on test set, using best model weights achieved during training
+# lightning chooses best weights based on metric specified in checkpoint callback
+check_point: null
+test_after_training: True
+predict_after_training: False
+
+# disable python warnings if they annoy you
+ignore_warnings: True
+
+# name of the run, should be used along with experiment mode
+name: Experiment
+dataset_name: Physionet
+model_name: GPVAE
+
+
+

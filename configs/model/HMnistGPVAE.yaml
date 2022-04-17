@@ -1,0 +1,38 @@
+_target_: src.models.HMnist.HMnistModels.HMnistGPVAE
+
+z_dim: 256
+image_preprocessor:
+  _target_: src.models.Encoders.ImagePreprocessor
+  image_shape: [ -1, 28, 28, 1 ]
+  hidden_sizes: [ 1, 256, 1 ]
+  kernel_size: [ 3, 3 ]
+encoder:
+  _target_: src.models.Encoders.BandedJointEncoder
+  hidden_sizes: [784, 256 ,256, 256]
+  precision_activation:
+    _target_: torch.nn.Softplus
+  z_size: 256
+  kernel_size: 3
+decoder:
+  _target_: src.models.Decoders.BernoulliDecoder
+  hidden_sizes: [256, 256, 256, 256, 784]
+
+classifier:
+  _target_: sklearn.linear_model.LogisticRegression
+  solver: lbfgs
+  tol: 1e-10
+  max_iter: 10000
+  n_jobs: -1
+
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.8
+is_mask: True
+
+# gp
+kernel: cauchy
+kernel_scales: 1
+sigma: 1
+length_scale: 2
+time_length: 10
+

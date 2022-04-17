@@ -1,0 +1,8 @@
+_target_: src.datasets.SPRITES.Spirits
+
+download_dir: "data\\SPRITES"
+download_url: https://www.dropbox.com/s/1bdpmsmf7vu7pmb/sprites.npz?dl=1
+file_name: sprites.npz
+validation_split: 8000
+batch_size: 32
+num_workers: 4

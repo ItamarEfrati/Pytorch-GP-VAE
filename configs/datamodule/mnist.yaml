@@ -1,0 +1,5 @@
+_target_: src.datasets.MNIST.MNISTDataModule
+
+download_dir: "data"
+batch_size: 2000
+num_workers: 4

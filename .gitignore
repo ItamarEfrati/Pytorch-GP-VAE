@@ -1,0 +1,4 @@
+/logs/*/
+/notebooks/.ipynb_checkpoints/
+/.idea
+/data/*/

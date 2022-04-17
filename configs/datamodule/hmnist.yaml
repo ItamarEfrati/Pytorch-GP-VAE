@@ -1,0 +1,8 @@
+_target_: src.datasets.HMNIST.HealingMNIST
+
+download_dir: "data\\HMNIST"
+download_url: https://www.dropbox.com/s/xzhelx89bzpkkvq/hmnist_mnar.npz?dl=1
+file_name: hmnist_mnar.npz
+validation_split: 50000
+batch_size: 64
+num_workers: 4
